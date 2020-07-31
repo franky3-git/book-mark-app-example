@@ -36,10 +36,10 @@
 				</div>
 				<div class="input-box">
 					<label for="site-url">site URL</label>
-					<input type="text" placeholder="Website URL">
+					<input type="text" placeholder="Website URL" id="site-url">
 				</div>
 
-				<button type="submit">submit</button>
+				<button type="submit" id="btn-add-bookmark">submit</button>
 			</form>
 		</div>
 
@@ -60,6 +60,14 @@
 			<p>&copy; 2020 Bookmaker.inc</p>
 		</footer>
 	</div>
+	
+	<script type="text/html" class="template">
+		<div class="bookmark">
+			<span class="bookmark-name">%name%</span>
+			<a href="%href%" class="btn-visit">visit</a>
+			<button class="btn-remove">delete</button>
+		</div>
+	</script>
 	
 	
 	<script src="src/js/app.js"></script>
