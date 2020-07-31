@@ -1,0 +1,86 @@
+:root {
+	--text-color: #555;
+	--remove-background-color: red;
+	--bookmark-background-color: #fff;
+}
+body {
+	color: var(--text-color);
+	font-family: sans-serif;
+}
+.container {
+	max-width: 800px;
+	margin: auto;
+}
+
+h1 {
+	text-transform: capitalize;
+	padding: 20px 0;
+	box-shadow: 0 0 2px rgba(0, 0, 0, .3);
+	margin: 30px 0;
+}
+
+.inputs-box-container {
+	background-color: #ddd;
+	text-align: center;
+	border-radius: 5px;
+	padding: 20px 0 30px
+}
+h2 {
+	text-transform: capitalize;
+	font-size: 1.2em;
+}
+form {
+	width: 80%;
+	margin: 10px auto;
+}
+.input-box {
+	margin: 15px 0;
+}
+.input-box label {
+	font-weight: 600;
+}
+.input-box input {
+	width: 100%;
+	padding: 4px;
+}
+form button {
+	text-transform: capitalize;
+	color: #eee;
+	background-color: darkcyan;
+	padding: 20px 25px;
+	cursor: pointer;
+	border: none;
+}
+.output-container {
+	margin-top: 30px;
+}
+.bookmark {
+	background-color: var(--bookmark-background-color);
+	padding: 25px 15px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .5);
+	margin: 20px 0;
+}
+.bookmark-name {
+	text-transform: capitalize;
+	font-weight: 600;
+}
+.btn-visit {
+	text-decoration: none;
+	color: inherit;
+	border: solid 1px var(--text-color);
+	padding: 5px 8px;
+	margin: 0 5px 0 2px;
+	border-radius: 3px;
+}
+.btn-remove {
+	padding: 7px 9px;
+	text-transform: capitalize;
+	color: #eee;
+	cursor: pointer;
+	background-color: var(--remove-background-color);
+	border: none;
+	border-radius: 3px;
+}
+footer {
+	font-size: .8em;
+}
