@@ -59,8 +59,15 @@ const removeBookmark = function(e){
 	if(e.target.classList.contains('btn-remove')) {
 		const item = e.target.parentElement;
 		const name = item.querySelector('.bookmark-name').textContent;
-		//log(name)
-		item.remove();
+		const ind = bookmarks.findIndex(bookmark => {
+			return bookmark.name == name
+		});
+		if(confirm('Are you sure you want to remove this website?')) {
+			bookmarks.splice(ind, 1);
+			outputContainer.innerHTML = '';
+			render();
+			saveBookmarks();
+		}
 	}
 };
 
@@ -73,8 +80,7 @@ render();
 form.addEventListener('submit', addBookmark)
 outputContainer.addEventListener('click', removeBookmark)
 
-localStorage.clear()
-
+//localStorage.clear()
 
 
 
