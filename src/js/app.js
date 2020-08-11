@@ -1,8 +1,8 @@
 (function() {
 	//"use strict"
 	const log = console.log;
-	const BOOKMARK_LOCAL = 'book.bookmarks'
-
+	const BOOKMARK_LOCAL = 'book.bookmarks';
+	localStorage.clear()
 	//element array 
 	let bookmarks;
 	if(localStorage.getItem(BOOKMARK_LOCAL)) {
@@ -35,8 +35,7 @@
 		});
 	}
 
-	const addBookmark = function(e){
-		e.preventDefault();
+	const addBookmark = function(){
 		if(webName.value) {
 			if(regexTestURL.test(webUrl.value)) {
 				outputContainer.innerHTML = '';
@@ -76,16 +75,19 @@
 
 	//Events handlers
 	render();
-	form.addEventListener('submit', addBookmark);
+	form.addEventListener('submit', function(e) {
+		e.preventDefault();
+		addBookmark();
+	});
 	outputContainer.addEventListener('click', removeBookmark);
-
-	//localStorage.clear()
+	document.addEventListener('keypress', function(e) {
+		if(e.which === 13) {
+			addBookmark()
+		}
+	});
 
 })()
 
-const regexTestURL = /^http:\/\//;
-var sentence = 'htp://my-ownurl';
-console.log(regexTestURL.test(sentence));
 
 
 
