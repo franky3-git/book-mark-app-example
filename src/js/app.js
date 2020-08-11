@@ -1,11 +1,12 @@
 (function() {
 	//"use strict"
 	const log = console.log;
+	const BOOKMARK_LOCAL = 'book.bookmarks'
 
 	//element array 
 	let bookmarks;
-	if(localStorage.getItem('bookmarks')) {
-		bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+	if(localStorage.getItem(BOOKMARK_LOCAL)) {
+		bookmarks = JSON.parse(localStorage.getItem(BOOKMARK_LOCAL));
 	} else {
 		bookmarks = [];
 	}
@@ -16,8 +17,9 @@
 	const outputContainer = document.querySelector('.output-container');
 	const form = document.querySelector('form');
 	const template = document.querySelector('.template');
+	const regexTestURL = /^http:\/\//;
 
-	//functions
+	//Constructor functions for a bookmark
 	const Bookmark = function(name, href) {
 		this.name = name;
 		this.href = href;
@@ -35,14 +37,18 @@
 
 	const addBookmark = function(e){
 		e.preventDefault();
-		if(webName.value && webUrl.value) {
-			outputContainer.innerHTML = '';
-			var newBookmark = new Bookmark(webName.value, webUrl.value);
-			bookmarks.push(newBookmark);
-			render();
-			saveBookmarks();
-			webName.value = '';
-			webUrl.value = '';
+		if(webName.value) {
+			if(regexTestURL.test(webUrl.value)) {
+				outputContainer.innerHTML = '';
+				var newBookmark = new Bookmark(webName.value, webUrl.value);
+				bookmarks.push(newBookmark);
+				render();
+				saveBookmarks();
+				webName.value = '';
+				webUrl.value = '';
+			} else {
+				alert('Please enter a valid URL');
+			}
 		}
 	};
 
@@ -55,7 +61,7 @@
 			const ind = bookmarks.findIndex(bookmark => {
 				return bookmark.name == name
 			});
-			if(confirm('Are you sure you want to remove this website?')) {
+			if(confirm('Are you sure you want to remove this bookmark?')) {
 				bookmarks.splice(ind, 1);
 				outputContainer.innerHTML = '';
 				render();
@@ -65,7 +71,7 @@
 	};
 
 	const saveBookmarks = function() {
-		localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+		localStorage.setItem(BOOKMARK_LOCAL, JSON.stringify(bookmarks));
 	}
 
 	//Events handlers
@@ -73,11 +79,13 @@
 	form.addEventListener('submit', addBookmark);
 	outputContainer.addEventListener('click', removeBookmark);
 
-	localStorage.clear()
+	//localStorage.clear()
 
 })()
 
-
+const regexTestURL = /^http:\/\//;
+var sentence = 'htp://my-ownurl';
+console.log(regexTestURL.test(sentence));
 
 
 
